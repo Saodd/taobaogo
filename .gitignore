@@ -17,3 +17,6 @@
 # IDEs
 .vscode
 .idea
+
+# Secrets
+secret.json
