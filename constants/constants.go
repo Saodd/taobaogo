@@ -1,4 +1,4 @@
-package taobaoapi
+package constants
 
 import "time"
 

@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/saodd/taobaogo/constants"
 	"github.com/saodd/taobaogo/utils"
 	"io/ioutil"
 	"log"
@@ -88,7 +89,7 @@ func (client *Client) Do(ctx context.Context, body RequestParams, sp SystemParam
 // BuildUrl 对请求参数进行签名，并且仅仅将系统参数放在query中。
 // 提醒：外部需要再将请求参数放入form中。
 func (client *Client) BuildUrl(rp RequestParams, sp SystemParams) string {
-	var now = time.Now().In(CST).Format(TaobaoDatetimeFormat)
+	var now = time.Now().In(constants.CST).Format(constants.TaobaoDatetimeFormat)
 	var spm = sp.ToSignMap()
 	// 1. 准备公共参数
 	var toSign = rp.ToSignMap()
