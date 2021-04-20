@@ -153,6 +153,8 @@ type RequestParams interface {
 	ToValues() url.Values
 }
 
+type RequestFields map[string]bool
+
 // SystemParams 是淘宝接口的通用参数中的需要填写的部分。
 type SystemParams struct {
 	Method  string  `json:"method"`

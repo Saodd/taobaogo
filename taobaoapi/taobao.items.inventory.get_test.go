@@ -3,7 +3,6 @@ package taobaoapi
 import (
 	"context"
 	"fmt"
-	"github.com/saodd/taobaogo/utils"
 	"testing"
 )
 
@@ -23,7 +22,9 @@ func TestClient_TaobaoItemsInventoryGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoItemsInventoryGetRequest{
-					Fields: "num_iid,title,price,modified",
+					Fields:   "num_iid,title,price,modified",
+					PageNo:   2, // 不生效
+					PageSize: 1, // 不生效
 				},
 				session: secrets.TaobaoShop.Session,
 			},
@@ -34,9 +35,10 @@ func TestClient_TaobaoItemsInventoryGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoItemsInventoryGetRequest{
-					Fields:   "num_iid,title,price,modified",
-					PageNo:   utils.Int(2),
-					PageSize: utils.Int(1),
+					RequestFields: map[string]bool{"page_no": true, "page_size": true},
+					Fields:        "num_iid,title,price,modified",
+					PageNo:        2,
+					PageSize:      1,
 				},
 				session: secrets.TaobaoShop.Session,
 			},

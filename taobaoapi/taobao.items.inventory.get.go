@@ -35,33 +35,35 @@ type TaobaoItemsInventoryGetResponse struct {
 }
 
 type TaobaoItemsInventoryGetRequest struct {
-	Fields        string                       `json:"fields"`
-	Q             *string                      `json:"q"`
-	Banner        *string                      `json:"banner"`
-	Cid           *int                         `json:"cid"`
-	SellerCids    *string                      `json:"seller_cids"`
-	PageNo        *int                         `json:"page_no"`
-	PageSize      *int                         `json:"page_size"`
-	HasDiscount   *string                      `json:"has_discount"`
-	OrderBy       *string                      `json:"order_by"`
-	IsTaobao      *bool                        `json:"is_taobao"`
-	IsEx          *bool                        `json:"is_ex"`
-	StartModified *taobaomodels.TaobaoDatetime `json:"start_modified"`
-	EndModified   *taobaomodels.TaobaoDatetime `json:"end_modified"`
-	AuctionType   *string                      `json:"auction_type"`
+	RequestFields
+
+	Fields        string                      `json:"fields"`
+	Q             string                      `json:"q"`              // 可选
+	Banner        string                      `json:"banner"`         // 可选
+	Cid           int                         `json:"cid"`            // 可选
+	SellerCids    string                      `json:"seller_cids"`    // 可选
+	PageNo        int                         `json:"page_no"`        // 可选
+	PageSize      int                         `json:"page_size"`      // 可选
+	HasDiscount   string                      `json:"has_discount"`   // 可选
+	OrderBy       string                      `json:"order_by"`       // 可选
+	IsTaobao      bool                        `json:"is_taobao"`      // 可选
+	IsEx          bool                        `json:"is_ex"`          // 可选
+	StartModified taobaomodels.TaobaoDatetime `json:"start_modified"` // 可选
+	EndModified   taobaomodels.TaobaoDatetime `json:"end_modified"`   // 可选
+	AuctionType   string                      `json:"auction_type"`   // 可选
 }
 
 func (r *TaobaoItemsInventoryGetRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
 	m["fields"] = fmt.Sprint(r.Fields)
-	if r.Q != nil {
-		m["q"] = *r.Q
+	if r.RequestFields["q"] {
+		m["q"] = r.Q
 	}
-	if r.PageNo != nil {
-		m["page_no"] = strconv.Itoa(*r.PageNo)
+	if r.RequestFields["page_no"] {
+		m["page_no"] = strconv.Itoa(r.PageNo)
 	}
-	if r.PageSize != nil {
-		m["page_size"] = strconv.Itoa(*r.PageSize)
+	if r.RequestFields["page_size"] {
+		m["page_size"] = strconv.Itoa(r.PageSize)
 	}
 	// ...
 	return m

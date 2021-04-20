@@ -35,24 +35,26 @@ type TaobaoItemsOnsaleGetResponse struct {
 }
 
 type TaobaoItemsOnsaleGetRequest struct {
-	Fields   string  `json:"fields"`
-	Q        *string `json:"q"`
-	PageNo   *int    `json:"page_no"`
-	PageSize *int    `json:"page_size"`
+	RequestFields
+
+	Fields   string `json:"fields"`
+	Q        string `json:"q"`         // 可选
+	PageNo   int    `json:"page_no"`   // 可选
+	PageSize int    `json:"page_size"` // 可选
 	// ...
 }
 
 func (r *TaobaoItemsOnsaleGetRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
 	m["fields"] = fmt.Sprint(r.Fields)
-	if r.Q != nil {
-		m["q"] = *r.Q
+	if r.RequestFields["q"] {
+		m["q"] = r.Q
 	}
-	if r.PageNo != nil {
-		m["page_no"] = strconv.Itoa(*r.PageNo)
+	if r.RequestFields["page_no"] {
+		m["page_no"] = strconv.Itoa(r.PageNo)
 	}
-	if r.PageSize != nil {
-		m["page_size"] = strconv.Itoa(*r.PageSize)
+	if r.RequestFields["page_size"] {
+		m["page_size"] = strconv.Itoa(r.PageSize)
 	}
 	return m
 }
