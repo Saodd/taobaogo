@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/saodd/taobaogo/taobaomodels"
+	"github.com/saodd/taobaogo/utils"
 	"net/url"
 )
 
@@ -31,6 +32,16 @@ func (client *Client) TaobaoTopAuthTokenCreate(ctx context.Context, data *Taobao
 		client.HandleError(ctx, err)
 		return nil, err
 	}
+	// 然后还要解码
+	if err := utils.QueryUnescape(&token.TaobaoUserNick); err != nil {
+		client.HandleError(ctx, err, map[string]interface{}{"nick": token.TaobaoUserNick})
+		return nil, err
+	}
+	if err := utils.QueryUnescape(&token.SubTaobaoUserNick); err != nil {
+		client.HandleError(ctx, err, map[string]interface{}{"sub_nick": token.SubTaobaoUserNick})
+		return nil, err
+	}
+
 	return &TaobaoTopAuthTokenCreateResponse{
 		TokenResult: &token,
 		RequestId:   res.Resp.RequestId,
