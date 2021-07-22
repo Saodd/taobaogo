@@ -55,6 +55,7 @@ type TaobaoPicturePicturesGetRequest struct {
 	Title             string `json:"title,omitempty"`
 	PageSize          int    `json:"page_size,omitempty"`
 	CurrentPage       int    `json:"current_page,omitempty"`
+	// ...
 }
 
 func (r *TaobaoPicturePicturesGetRequest) ToSignMap() map[string]string {
