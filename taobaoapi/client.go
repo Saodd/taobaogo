@@ -151,9 +151,10 @@ type RequestParams interface {
 
 	// ToValues 提供所有私有请求参数（将放入 body form 里）
 	ToValues() url.Values
-}
 
-type RequestFields map[string]bool
+	// Valid 检查参数是否合法
+	Valid() error
+}
 
 // SystemParams 是淘宝接口的通用参数中的需要填写的部分。
 type SystemParams struct {
@@ -192,4 +193,14 @@ type SystemError struct {
 
 func (e *SystemError) Error() string {
 	return fmt.Sprintf("TaobaoAPIError: %s | %d | %s | %s | %s", e.RequestId, e.Code, e.Msg, e.SubCode, e.SubMsg)
+}
+
+// RequestParamInvalidError 用于 RequestParams.Valid() 的返回错误信息
+type RequestParamInvalidError struct {
+	FieldName string
+	Detail    string
+}
+
+func (r *RequestParamInvalidError) Error() string {
+	return fmt.Sprintf("[%s]: %s", r.FieldName, r.Detail)
 }

@@ -47,7 +47,7 @@ type TaobaoPicturePicturesGetResponse struct {
 }
 
 type TaobaoPicturePicturesGetRequest struct {
-	RequestFields
+	RequestFields TaobaoPicturePicturesGetFields
 
 	PictureCategoryId int    `json:"picture_category_id,omitempty"`
 	PictureId         int    `json:"picture_id,omitempty"`
@@ -57,25 +57,33 @@ type TaobaoPicturePicturesGetRequest struct {
 	CurrentPage       int    `json:"current_page,omitempty"`
 	// ...
 }
+type TaobaoPicturePicturesGetFields struct {
+	PictureCategoryId bool
+	PictureId         bool
+	OrderBy           bool
+	Title             bool
+	PageSize          bool
+	CurrentPage       bool
+}
 
 func (r *TaobaoPicturePicturesGetRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
-	if r.RequestFields["picture_category_id"] {
+	if r.RequestFields.PictureCategoryId {
 		m["picture_category_id"] = strconv.Itoa(r.PictureCategoryId)
 	}
-	if r.RequestFields["picture_id"] {
+	if r.RequestFields.PictureId {
 		m["picture_id"] = strconv.Itoa(r.PictureId)
 	}
-	if r.RequestFields["order_by"] {
+	if r.RequestFields.OrderBy {
 		m["order_by"] = r.OrderBy
 	}
-	if r.RequestFields["title"] {
+	if r.RequestFields.Title {
 		m["title"] = r.Title
 	}
-	if r.RequestFields["page_size"] {
+	if r.RequestFields.PageSize {
 		m["page_size"] = strconv.Itoa(r.PageSize)
 	}
-	if r.RequestFields["current_page"] {
+	if r.RequestFields.CurrentPage {
 		m["current_page"] = strconv.Itoa(r.CurrentPage)
 	}
 	return m
@@ -87,4 +95,8 @@ func (r *TaobaoPicturePicturesGetRequest) ToValues() url.Values {
 		value.Set(k, v)
 	}
 	return value
+}
+
+func (r *TaobaoPicturePicturesGetRequest) Valid() error {
+	return nil
 }

@@ -36,8 +36,6 @@ type TaobaoItemSellerGetResponse struct {
 }
 
 type TaobaoItemSellerGetRequest struct {
-	RequestFields
-
 	Fields string `json:"fields"`
 	NumIid int64  `json:"num_iid"`
 }
@@ -55,6 +53,10 @@ func (r *TaobaoItemSellerGetRequest) ToValues() url.Values {
 		value.Set(k, v)
 	}
 	return value
+}
+
+func (r *TaobaoItemSellerGetRequest) Valid() error {
+	return nil
 }
 
 type T struct {

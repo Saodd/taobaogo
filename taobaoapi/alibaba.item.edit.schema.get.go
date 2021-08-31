@@ -29,16 +29,20 @@ type AlibabaItemEditSchemaGetResponse struct {
 }
 
 type AlibabaItemEditSchemaGetRequest struct {
-	RequestFields
+	RequestFields AlibabaItemEditSchemaGetFields
 
 	ItemId  int64  `json:"item_id"`
 	BizType string `json:"biz_type"` // 可选
 }
 
+type AlibabaItemEditSchemaGetFields struct {
+	BizType bool
+}
+
 func (r *AlibabaItemEditSchemaGetRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
 	m["item_id"] = fmt.Sprint(r.ItemId)
-	if r.RequestFields["biz_type"] {
+	if r.RequestFields.BizType {
 		m["biz_type"] = r.BizType
 	}
 	return m
@@ -50,4 +54,8 @@ func (r *AlibabaItemEditSchemaGetRequest) ToValues() url.Values {
 		value.Set(k, v)
 	}
 	return value
+}
+
+func (r *AlibabaItemEditSchemaGetRequest) Valid() error {
+	return nil
 }

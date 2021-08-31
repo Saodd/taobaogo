@@ -32,7 +32,7 @@ func TestClient_TaobaoPicturePicturesGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoPicturePicturesGetRequest{
-					RequestFields:     map[string]bool{"picture_category_id": true},
+					RequestFields:     TaobaoPicturePicturesGetFields{PictureCategoryId: true},
 					PictureCategoryId: 14147127675499170,
 				},
 				session: secrets.TaobaoShop.Session,
@@ -44,7 +44,7 @@ func TestClient_TaobaoPicturePicturesGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoPicturePicturesGetRequest{
-					RequestFields: map[string]bool{"title": true},
+					RequestFields: TaobaoPicturePicturesGetFields{Title: true},
 					Title:         "11副本.jpg",
 				},
 				session: secrets.TaobaoShop.Session,

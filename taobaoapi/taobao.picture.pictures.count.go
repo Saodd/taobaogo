@@ -30,7 +30,7 @@ type TaobaoPicturePicturesCountResponse struct {
 }
 
 type TaobaoPicturePicturesCountRequest struct {
-	RequestFields
+	RequestFields TaobaoPicturePicturesCountFields
 
 	PictureCategoryId int    `json:"picture_category_id,omitempty"`
 	PictureId         int    `json:"picture_id,omitempty"`
@@ -39,15 +39,21 @@ type TaobaoPicturePicturesCountRequest struct {
 	// 2021-07-22: 目前看来，传入的所有参数都无效
 }
 
+type TaobaoPicturePicturesCountFields struct {
+	PictureCategoryId bool
+	PictureId         bool
+	Title             bool
+}
+
 func (r *TaobaoPicturePicturesCountRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
-	if r.RequestFields["picture_category_id"] {
+	if r.RequestFields.PictureCategoryId {
 		m["picture_category_id"] = strconv.Itoa(r.PictureCategoryId)
 	}
-	if r.RequestFields["picture_id"] {
+	if r.RequestFields.PictureId {
 		m["picture_id"] = strconv.Itoa(r.PictureId)
 	}
-	if r.RequestFields["title"] {
+	if r.RequestFields.Title {
 		m["title"] = r.Title
 	}
 	return m
@@ -59,4 +65,8 @@ func (r *TaobaoPicturePicturesCountRequest) ToValues() url.Values {
 		value.Set(k, v)
 	}
 	return value
+}
+
+func (r *TaobaoPicturePicturesCountRequest) Valid() error {
+	return nil
 }

@@ -91,6 +91,10 @@ func (r *TaobaoUserSellerGetRequest) ToValues() url.Values {
 	return value
 }
 
+func (r *TaobaoUserSellerGetRequest) Valid() error {
+	return nil
+}
+
 const (
 	TaobaoUserSellerGetDemo = "user_id,nick,seller_credit,type,avatar"
 )

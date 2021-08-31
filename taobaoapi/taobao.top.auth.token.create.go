@@ -70,3 +70,7 @@ func (r *TaobaoTopAuthTokenCreateRequest) ToValues() url.Values {
 	}
 	return value
 }
+
+func (r *TaobaoTopAuthTokenCreateRequest) Valid() error {
+	return nil
+}

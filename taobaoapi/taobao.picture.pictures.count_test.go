@@ -32,7 +32,7 @@ func TestClient_TaobaoPicturePicturesCount(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoPicturePicturesCountRequest{
-					RequestFields:     map[string]bool{"picture_category_id": true},
+					RequestFields:     TaobaoPicturePicturesCountFields{PictureCategoryId: true},
 					PictureCategoryId: 14147127675499170,
 				},
 				session: secrets.TaobaoShop.Session,

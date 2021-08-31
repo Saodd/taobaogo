@@ -48,7 +48,7 @@ type TaobaoPictureCategoryGetResponse struct {
 }
 
 type TaobaoPictureCategoryGetRequest struct {
-	RequestFields
+	RequestFields TaobaoPictureCategoryGetFields
 
 	Type                string                      `json:"type,omitempty"` // TaobaoPictureCategoryGetType
 	PictureCategoryId   int                         `json:"picture_category_id,omitempty"`
@@ -57,21 +57,29 @@ type TaobaoPictureCategoryGetRequest struct {
 	ModifiedTime        taobaomodels.TaobaoDatetime `json:"modified_time,omitempty"`
 }
 
+type TaobaoPictureCategoryGetFields struct {
+	Type                bool
+	PictureCategoryId   bool
+	PictureCategoryName bool
+	ParentId            bool
+	ModifiedTime        bool
+}
+
 func (r *TaobaoPictureCategoryGetRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
-	if r.RequestFields["type"] {
+	if r.RequestFields.Type {
 		m["type"] = r.Type
 	}
-	if r.RequestFields["picture_category_id"] {
+	if r.RequestFields.PictureCategoryId {
 		m["picture_category_id"] = strconv.Itoa(r.PictureCategoryId)
 	}
-	if r.RequestFields["picture_category_name"] {
+	if r.RequestFields.PictureCategoryName {
 		m["picture_category_name"] = r.PictureCategoryName
 	}
-	if r.RequestFields["parent_id"] {
+	if r.RequestFields.ParentId {
 		m["parent_id"] = strconv.Itoa(r.ParentId)
 	}
-	if r.RequestFields["modified_time"] {
+	if r.RequestFields.ModifiedTime {
 		m["modified_time"] = r.ModifiedTime.Format(constants.TaobaoDatetimeFormat)
 	}
 	return m
@@ -83,4 +91,8 @@ func (r *TaobaoPictureCategoryGetRequest) ToValues() url.Values {
 		value.Set(k, v)
 	}
 	return value
+}
+
+func (r *TaobaoPictureCategoryGetRequest) Valid() error {
+	return nil
 }

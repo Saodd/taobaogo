@@ -40,16 +40,19 @@ type TaobaoPicassoPictagControltimeQueryResponse struct {
 }
 
 type TaobaoPicassoPictagControltimeQueryRequest struct {
-	RequestFields
 }
 
 func (r *TaobaoPicassoPictagControltimeQueryRequest) ToSignMap() map[string]string {
 	m := make(map[string]string)
-
 	return m
 }
 
 func (r *TaobaoPicassoPictagControltimeQueryRequest) ToValues() url.Values {
 	value := url.Values{}
 	return value
+}
+
+func (r *TaobaoPicassoPictagControltimeQueryRequest) Valid() error {
+
+	return nil
 }

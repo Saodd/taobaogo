@@ -35,10 +35,13 @@ func TestClient_TaobaoItemsOnsaleGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoItemsOnsaleGetRequest{
-					RequestFields: map[string]bool{"page_no": true, "page_size": true},
-					Fields:        "num_iid,title,price,modified",
-					PageNo:        2,
-					PageSize:      1,
+					RequestFields: TaobaoItemsOnsaleGetFields{
+						PageNo:   true,
+						PageSize: true,
+					},
+					Fields:   "num_iid,title,price,modified",
+					PageNo:   2,
+					PageSize: 1,
 				},
 				session: secrets.TaobaoShop.Session,
 			},

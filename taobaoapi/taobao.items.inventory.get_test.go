@@ -35,7 +35,7 @@ func TestClient_TaobaoItemsInventoryGet(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				data: &TaobaoItemsInventoryGetRequest{
-					RequestFields: map[string]bool{"page_no": true, "page_size": true},
+					RequestFields: TaobaoItemsInventoryGetFields{PageNo: true, PageSize: true},
 					Fields:        "num_iid,title,price,modified",
 					PageNo:        2,
 					PageSize:      1,

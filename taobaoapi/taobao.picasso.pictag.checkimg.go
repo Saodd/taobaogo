@@ -59,3 +59,7 @@ func (r *TaobaoPicassoPictagCheckimgRequest) ToValues() url.Values {
 	}
 	return value
 }
+
+func (r *TaobaoPicassoPictagCheckimgRequest) Valid() error {
+	return nil
+}
