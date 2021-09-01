@@ -35,7 +35,7 @@ type TaobaoItemsInventoryGetResponse struct {
 }
 
 type TaobaoItemsInventoryGetRequest struct {
-	RequestFields TaobaoItemsInventoryGetFields
+	RequestFields TaobaoItemsInventoryGetFields `json:"-"`
 
 	Fields        string                      `json:"fields"`
 	Q             string                      `json:"q"`              // 可选

@@ -30,7 +30,7 @@ type TaobaoPicturePicturesCountResponse struct {
 }
 
 type TaobaoPicturePicturesCountRequest struct {
-	RequestFields TaobaoPicturePicturesCountFields
+	RequestFields TaobaoPicturePicturesCountFields `json:"-"`
 
 	PictureCategoryId int    `json:"picture_category_id,omitempty"`
 	PictureId         int    `json:"picture_id,omitempty"`

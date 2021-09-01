@@ -29,7 +29,7 @@ type AlibabaItemEditSchemaGetResponse struct {
 }
 
 type AlibabaItemEditSchemaGetRequest struct {
-	RequestFields AlibabaItemEditSchemaGetFields
+	RequestFields AlibabaItemEditSchemaGetFields `json:"-"`
 
 	ItemId  int64  `json:"item_id"`
 	BizType string `json:"biz_type"` // 可选

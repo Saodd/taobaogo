@@ -47,7 +47,7 @@ type TaobaoPicturePicturesGetResponse struct {
 }
 
 type TaobaoPicturePicturesGetRequest struct {
-	RequestFields TaobaoPicturePicturesGetFields
+	RequestFields TaobaoPicturePicturesGetFields `json:"-"`
 
 	PictureCategoryId int    `json:"picture_category_id,omitempty"`
 	PictureId         int    `json:"picture_id,omitempty"`
