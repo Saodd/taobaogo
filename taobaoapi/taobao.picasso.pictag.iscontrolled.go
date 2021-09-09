@@ -35,10 +35,6 @@ type TaobaoPicassoPictagIscontrolledResponse struct {
 }
 
 type TaobaoPicassoPictagIscontrolledRequest struct {
-	RequestFields TaobaoPicassoPictagIscontrolledFields `json:"-"`
-}
-
-type TaobaoPicassoPictagIscontrolledFields struct {
 }
 
 func (r *TaobaoPicassoPictagIscontrolledRequest) ToSignMap() map[string]string {
