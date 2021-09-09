@@ -24,7 +24,7 @@ func TestClient_TaobaoPicassoPictagCheckimg(t *testing.T) {
 				ctx: context.Background(),
 				data: &TaobaoPicassoPictagCheckimgRequest{
 					ItemId: secrets.TaobaoShop.Iids[0],
-					Biz:    "pictag",
+					Biz:    "upload",
 					PicUrl: "https://img.alicdn.com/bao/uploaded/i1/696944147/O1CN01aQ3LOq1gVNBRp5rLi_!!0-item_pic.jpg",
 				},
 				session: secrets.TaobaoShop.Session,

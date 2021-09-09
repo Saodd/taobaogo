@@ -31,6 +31,7 @@ type TaobaoPicassoPictagCheckimgResponse struct {
 			ReasonMsg   string `json:"reason_msg"`
 			ReasonCode  string `json:"reason_code"`
 			CheckResult string `json:"check_result"` // 检测结果，有3种值： OK表示检测通过； WARNING表示有风险；FAIL表示检测不通过
+			PicUrl      string `json:"pic_url"`
 		} `json:"model"`
 		MsgInfo string `json:"msg_info"`
 		MsgCode string `json:"msg_code"`
@@ -39,10 +40,11 @@ type TaobaoPicassoPictagCheckimgResponse struct {
 }
 
 type TaobaoPicassoPictagCheckimgRequest struct {
-	ItemId  int64  `json:"item_id"`
-	Biz     string `json:"biz"` // 目前有2种：pictag表示打标检测底图及修饰图片，upload表示直接上传图片
-	PicUrl  string `json:"pic_url,omitempty"`
-	PicData []byte `json:"pic_data,omitempty"`
+	ItemId       int64  `json:"item_id,omitempty"`
+	Biz          string `json:"biz"` // 目前有2种：pictag表示打标检测底图及修饰图片，upload表示直接上传图片
+	PicUrl       string `json:"pic_url,omitempty"`
+	PicData      []byte `json:"pic_data,omitempty"`
+	CheckPicType string `json:"check_pic_type,omitempty"` // 例如"1:1"
 }
 
 func (r *TaobaoPicassoPictagCheckimgRequest) ToSignMap() map[string]string {
