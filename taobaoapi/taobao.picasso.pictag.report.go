@@ -14,7 +14,7 @@ func (client *Client) TaobaoPicassoPictagReport(ctx context.Context, data *Taoba
 		Session: &session,
 	}
 	var res struct {
-		Resp *TaobaoPicassoPictagReportResponse `json:"???"`
+		Resp *TaobaoPicassoPictagReportResponse `json:"picasso_pictag_report_response"`
 	}
 	err := client.Do(ctx, data, sp, &res)
 	if err != nil {
@@ -25,6 +25,9 @@ func (client *Client) TaobaoPicassoPictagReport(ctx context.Context, data *Taoba
 }
 
 type TaobaoPicassoPictagReportResponse struct {
+	Result struct {
+		Success bool `json:"success"`
+	} `json:"result"`
 	RequestId string `json:"request_id"`
 }
 
